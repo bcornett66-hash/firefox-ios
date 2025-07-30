@@ -99,7 +99,7 @@ public class SummarizeController: UIViewController, Themeable {
 
     // MARK: - Themeable
     public let themeManager: any Common.ThemeManager
-    public var themeObserver: (any NSObjectProtocol)?
+    public var themeListenerCancellable: Any?
     public var notificationCenter: any Common.NotificationProtocol
     public let currentWindowUUID: Common.WindowUUID?
 
@@ -152,6 +152,7 @@ public class SummarizeController: UIViewController, Themeable {
         super.viewDidLoad()
         setupSubviews()
 
+        listenForThemeChanges(view, withNotificationCenter: notificationCenter)
         applyTheme()
     }
 
